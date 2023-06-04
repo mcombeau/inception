@@ -1,5 +1,14 @@
 # Inception Notes
 
+## Useful Links
+
+* [Docker Curriculum](https://docker-curriculum.com/)
+* [Dockerfile Reference](https://docs.docker.com/engine/reference/builder/)
+* [NGINX Configuration Beginner's Guide](https://nginx.org/en/docs/beginners_guide.html)
+* [OpenSSL Man Page](https://www.openssl.org/docs/man1.0.2/man1/openssl-req.html)
+* [Generate Self-Signed SSL Certificate with OpenSSL](https://stackoverflow.com/a/10176685)
+
+
 ## About Docker
 
 ### Images
@@ -49,6 +58,10 @@ Run an image in an interactive container with a shell (creates the container, pr
 docker run -it <image> sh
 ```
 
+Run and specify `hostPort:dockerPort` to map the host port to the docker port (important for NGINX):
+```
+docker run -p <hostPort>:<dockerPort> <image>
+```
 
 List currently running containers:
 ```
