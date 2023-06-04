@@ -6,7 +6,7 @@ RUN		apk update && apk upgrade &&\
 		mkdir -p /var/www/html/
 COPY	./conf/nginx.conf /etc/nginx/nginx.conf
 COPY	./conf/default.conf /etc/nginx/http.d/default.conf
-COPY	./404.html /var/www/html/
+
 # OPENSSL
 RUN		apk add openssl &&\
 		openssl req -x509 -nodes -days 365 -newkey rsa:2048\
