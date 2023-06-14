@@ -22,7 +22,7 @@ setup:
 	mkdir -p ${HOME}/inception/data/wordpress-data
 
 clean:
-	rm -rf ${HOME}/inception
+	sudo rm -rf ${HOME}/inception
 
 fclean: clean
 	docker system prune -f
