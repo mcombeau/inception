@@ -6,8 +6,8 @@ RUN		apk update && apk upgrade &&\
 
 # Copy MariaDB configuration files
 COPY	./conf/mariadb.cnf /etc/mysql/my.cnf
-COPY	./conf/configurate-mariadb.sh /tmp/configurate-mariadb.sh
-RUN		chmod +x /tmp/configurate-mariadb.sh
+COPY	./conf/configure-mariadb.sh /tmp/configure-mariadb.sh
+RUN		chmod +x /tmp/configure-mariadb.sh
 
 # Run MariaDB configuration script as entry point
-ENTRYPOINT	[ "sh", "/tmp/configurate-mariadb.sh" ]
+ENTRYPOINT	[ "sh", "/tmp/configure-mariadb.sh" ]
