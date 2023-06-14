@@ -12,12 +12,6 @@ if [ ! -d "/var/lib/mysql/mysql" ]; then
 	mysql_install_db --basedir=/usr --datadir=/var/lib/mysql --user=mysql --rpm > /dev/null
 fi
 
-# TODO: THIS IS TEMPORARY: REMOVE EXPORTS AND USE .env FILE
-export DB_ROOT_PASS=SecureDBPASS666
-export WP_DB_NAME=wordpress_db
-export WP_DB_USER=wordpress_user
-export WP_DB_PASS=AwesomelySecurePassword123
-
 TMP=/tmp/.tmpfile
 
 echo "USE mysql;" > ${TMP}
