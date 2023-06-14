@@ -12,7 +12,7 @@ if [ ! -d "/var/lib/mysql/mysql" ]; then
 	mysql_install_db --basedir=/usr --datadir=/var/lib/mysql --user=mysql --rpm > /dev/null
 fi
 
-# export $( grep -vE "^(#.*|\s*)$" .env )
+# TODO: THIS IS TEMPORARY: REMOVE EXPORTS AND USE .env FILE
 export DB_ROOT_PASS=SecureDBPASS666
 export WP_DB_NAME=wordpress_db
 export WP_DB_USER=wordpress_user
@@ -38,6 +38,5 @@ echo "FLUSH PRIVILEGES;" >> ${TMP}
 # But we can also manually start and configure the mysql daemon:
 /usr/bin/mysqld --user=mysql --bootstrap < ${TMP}
 rm -f ${TMP}
-
 
 exec /usr/bin/mysqld --user=mysql --console
