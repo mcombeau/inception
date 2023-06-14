@@ -21,7 +21,7 @@ RUN		apk add curl &&\
 		ln -s /usr/bin/php82 /usr/bin/php
 
 # Copy WordPress configuration file
-COPY	./config/configure-wordpress.sh /tmp/configure-wordpress.sh
+COPY	./conf/configure-wordpress.sh /tmp/configure-wordpress.sh
 RUN		chmod +x /tmp/configure-wordpress.sh
 
 # Run the WordPress configuration file at container startup
