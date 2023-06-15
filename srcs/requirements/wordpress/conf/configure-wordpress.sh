@@ -30,5 +30,4 @@ fi
 
 echo "[WP config] Executing PHP fastcgi"
 
-which php-fpm82
 exec /usr/sbin/php-fpm82 -F -R
