@@ -10,7 +10,7 @@ services:
             - inception
         ports:
             - "443:443"
-        restart:        on-failure
+        # restart:        on-failure
         volumes:
             - wordpress-data:/var/www/html/
         depends_on:
@@ -22,7 +22,7 @@ services:
         env_file:       .env
         networks:
             - inception
-        restart:        on-failure
+        # restart:        on-failure
         volumes:
             - mariadb-data:/var/lib/mysql/
     wordpress:
@@ -32,7 +32,7 @@ services:
         env_file:       .env
         networks:
             - inception
-        restart:        on-failure
+        # restart:        on-failure
         volumes:
             - wordpress-data:/var/www/html/
         depends_on:

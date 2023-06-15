@@ -18,12 +18,19 @@
 * `COPY`: Copy a file from host machine to the future docker container. Useful for loading custom configuration files.
 * `ENTRYPOINT [ "command", "args"]`: The command to run at conainer startup.
 
+### Docker-compose Debugging
+* Remove service restart in `docker-compose.yml`
+* `make up`
+* Show container states: `docker-compose ps` (`cd` into `srcs` directory first)
+* Show logs: `docker-compose logs` (add `--follow <container_name>` option to only see that container's logs)
+
 ### Useful Resources
 
 Docker:
 
 * [Docker Curriculum](https://docker-curriculum.com/)
 * [Dockerfile Reference](https://docs.docker.com/engine/reference/builder/)
+* [How to Debug a Docker Compose Build](https://www.matthewsetter.com/basic-docker-compose-debugging/)
 
 Alpine Linux:
 
