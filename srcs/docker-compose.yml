@@ -49,11 +49,11 @@ volumes:
     driver_opts:
       type: 'none'
       o:    'bind'
-      device: ${HOME}/inception/data/mariadb-data
+      device: ${DATA_PATH}/mariadb-data
   wordpress-data:
     driver: local
     driver_opts:
       type: 'none'
       o:    'bind'
-      device: ${HOME}/inception/data/wordpress-data
+      device: ${DATA_PATH}/wordpress-data
 

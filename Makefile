@@ -1,30 +1,36 @@
+LOGIN = 	login
+DATA_PATH = /home/${LOGIN}/data
+
 all: up
 
 up: setup
-	docker-compose -f ./srcs/docker-compose.yml up -d --build
+	DATA_PATH=${DATA_PATH} docker-compose -f ./srcs/docker-compose.yml up -d --build
 
 down:
-	docker-compose -f ./srcs/docker-compose.yml down
+	DATA_PATH=${DATA_PATH} docker-compose -f ./srcs/docker-compose.yml down
 
 start:
-	docker-compose -f ./srcs/docker-compose.yml start
+	DATA_PATH=${DATA_PATH} docker-compose -f ./srcs/docker-compose.yml start
 
 stop:
-	docker-compose -f ./srcs/docker-compose.yml stop
+	DATA_PATH=${DATA_PATH} docker-compose -f ./srcs/docker-compose.yml stop
 
 status:
-	docker ps
+	cd srcs && docker-compose ps && cd ..
+
+logs:
+	cd srcs && docker-compose logs && cd ..
 
 setup:
-	mkdir -p ${HOME}/inception
-	mkdir -p ${HOME}/inception/data
-	mkdir -p ${HOME}/inception/data/mariadb-data
-	mkdir -p ${HOME}/inception/data/wordpress-data
+	sudo mkdir -p /home/${LOGIN}/
+	sudo mkdir -p ${DATA_PATH}
+	sudo mkdir -p ${DATA_PATH}/mariadb-data
+	sudo mkdir -p ${DATA_PATH}/wordpress-data
 
 clean:
-	sudo rm -rf ${HOME}/inception
+	sudo rm -rf ${DATA_PATH}
 
 fclean: clean
 	docker system prune -f
 
-.PHONY: up down start stop status prune clean fclean
+.PHONY: up down start stop status logs prune clean fclean

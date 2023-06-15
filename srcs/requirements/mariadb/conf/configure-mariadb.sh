@@ -1,20 +1,23 @@
 #!/bin/sh
 
 echo "[DB config] Configuring MariaDB..."
-# Grant MySQLD permissions to run
+
 if [ ! -d "/run/mysqld" ]; then
-	echo "[DB config] Creating /run/mysqld"
+	echo "[DB config] Granting MariaDB daemon run permissions..."
 	mkdir -p /run/mysqld
 	chown -R mysql:mysql /run/mysqld
 fi
 
-# Initialize MySQL Data Directory if it does not already exist
-if [ ! -d "/var/lib/mysql/mysql" ]; then
-	echo "[DB config] Installing MySQL Data Directory"
+if [ -d "/var/lib/mysql/mysql" ]
+then
+	echo "[DB config] MariaDB already configured."
+else
+	echo "[DB config] Installing MySQL Data Directory..."
 	chown -R mysql:mysql /var/lib/mysql
 	mysql_install_db --basedir=/usr --datadir=/var/lib/mysql --user=mysql --rpm > /dev/null
+	echo "[DB config] MySQL Data Directory done."
 
-	echo "[DB config] Creating tmp file for SQL configuration commands"
+	echo "[DB config] Configuring MySQL..."
 	TMP=/tmp/.tmpfile
 
 	echo "USE mysql;" > ${TMP}
@@ -35,12 +38,12 @@ if [ ! -d "/var/lib/mysql/mysql" ]; then
 	# But we can also manually start and configure the mysql daemon:
 	/usr/bin/mysqld --user=mysql --bootstrap < ${TMP}
 	rm -f ${TMP}
-	echo "[DB config] SQL configuration done."
+	echo "[DB config] MySQL configuration done."
 fi
 
-echo '[DB config] sed -i "s|skip-networking|# skip-networking|g" /etc/my.cnf.d/mariadb-server.cnf'
+echo "[DB config] Allowing remote connections to MariaDB"
 sed -i "s|skip-networking|# skip-networking|g" /etc/my.cnf.d/mariadb-server.cnf
-echo '[DB config] sed -i "s|.*bind-address\s*=.*|bind-address=0.0.0.0|g" /etc/my.cnf.d/mariadb-server.cnf'
 sed -i "s|.*bind-address\s*=.*|bind-address=0.0.0.0|g" /etc/my.cnf.d/mariadb-server.cnf
 
+echo "[DB config] Executing MariaDB daemon"
 exec /usr/bin/mysqld --user=mysql --console

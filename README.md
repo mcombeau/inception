@@ -56,3 +56,4 @@ WordPress:
 * [PHP](https://www.php.net/)
 * [Installing WordPress with curl and WP-CLI](https://make.wordpress.org/cli/handbook/guides/installing/)
 * [WP-CLI Commands](https://developer.wordpress.org/cli/commands/)
+* [WP-CLI Overview](https://jparks.work/index.php?title=Wp-cli)
