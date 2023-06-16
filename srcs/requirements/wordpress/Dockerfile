@@ -23,9 +23,10 @@ RUN		sed -i 's/listen = 127.0.0.1:9000/listen = 9000/g' /etc/php81/php-fpm.d/www
 # Install WP-CLI
 RUN		apk add curl &&\
 		curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar &&\
-		chmod +x wp-cli.phar &&\
-		mv wp-cli.phar /usr/local/bin/wp &&\
-		alias wp="/usr/bin/php81-cli /usr/local/bin/wp"
+		chmod +x wp-cli.phar
+		# alias wp="/usr/bin/php81-cli wp-cli.phar"
+		# mv wp-cli.phar /usr/local/bin/wp &&\
+		# alias wp="/usr/bin/php81-cli /usr/local/bin/wp"
 
 # Copy WordPress configuration file
 COPY	./conf/configure-wordpress.sh /tmp/configure-wordpress.sh
