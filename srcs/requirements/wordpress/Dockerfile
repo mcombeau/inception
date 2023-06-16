@@ -12,12 +12,6 @@ RUN		apk update && apk upgrade &&\
 			php81-xsl php81-zip php81-zlib &&\
 		apk add mariadb-client
 
-# Install Wordpress files
-# RUN		wget https://wordpress.org/latest.tar.gz &&\
-# 		mkdir -p /var/www/html &&\
-# 		tar -xvf latest.tar.gz -C /var/www/html &&\
-# 		rm -f latest.tar.gz
-
 # Configure PHP-fpm to listen on internal inception network port 9000
 RUN		sed -i 's/listen = 127.0.0.1:9000/listen = 9000/g' /etc/php81/php-fpm.d/www.conf
 
