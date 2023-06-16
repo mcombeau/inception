@@ -1,19 +1,22 @@
+# Edit login before launching !
 LOGIN = 	login
+DOMAIN =	${LOGIN}.42.fr
 DATA_PATH = /home/${LOGIN}/data
+ENV =		LOGIN=${LOGIN} DATA_PATH=${DATA_PATH} DOMAIN=${LOGIN}.42.fr 
 
 all: up
 
 up: setup
-	DATA_PATH=${DATA_PATH} docker-compose -f ./srcs/docker-compose.yml up -d --build
+	 ${ENV} docker-compose -f ./srcs/docker-compose.yml up -d --build
 
 down:
-	DATA_PATH=${DATA_PATH} docker-compose -f ./srcs/docker-compose.yml down
+	${ENV} docker-compose -f ./srcs/docker-compose.yml down
 
 start:
-	DATA_PATH=${DATA_PATH} docker-compose -f ./srcs/docker-compose.yml start
+	${ENV} docker-compose -f ./srcs/docker-compose.yml start
 
 stop:
-	DATA_PATH=${DATA_PATH} docker-compose -f ./srcs/docker-compose.yml stop
+	${ENV} docker-compose -f ./srcs/docker-compose.yml stop
 
 status:
 	cd srcs && docker-compose ps && cd ..
@@ -22,6 +25,8 @@ logs:
 	cd srcs && docker-compose logs && cd ..
 
 setup:
+	${ENV} ./configure-login.sh
+	${ENV} ./configure-hosts.sh
 	sudo mkdir -p /home/${LOGIN}/
 	sudo mkdir -p ${DATA_PATH}
 	sudo mkdir -p ${DATA_PATH}/mariadb-data
@@ -31,6 +36,7 @@ clean:
 	sudo rm -rf ${DATA_PATH}
 
 fclean: clean
+	${ENV} ./anonymize-login.sh
 	docker system prune -f
 
 .PHONY: up down start stop status logs prune clean fclean
