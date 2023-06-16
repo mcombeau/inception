@@ -37,6 +37,18 @@ services:
             - wordpress-data:/var/www/html/
         depends_on:
             - mariadb
+    vsftpd:
+        container_name: vsftpd
+        build:          ./requirements/bonus/ftp/
+        image:          vsftpd:inception
+        env_file:       .env
+        networks:
+            - inception
+        restart:        on-failure
+        volumes:
+            - wordpress-data:/var/www/html/
+        depends_on:
+            - wordpress
 
 networks:
     inception:

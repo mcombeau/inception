@@ -57,3 +57,7 @@ WordPress:
 * [Installing WordPress with curl and WP-CLI](https://make.wordpress.org/cli/handbook/guides/installing/)
 * [WP-CLI Commands](https://developer.wordpress.org/cli/commands/)
 * [WP-CLI Overview](https://jparks.work/index.php?title=Wp-cli)
+
+Bonus: FTP:
+* [How to Setup FTP Server with VSFTPD](https://adamtheautomator.com/vsftpd/)
+* [Vsftpd.conf Manual](http://vsftpd.beasts.org/vsftpd_conf.html)
