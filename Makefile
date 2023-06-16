@@ -39,4 +39,4 @@ fclean: clean
 	${ENV} ./anonymize-login.sh
 	docker system prune -f
 
-.PHONY: up down start stop status logs prune clean fclean
+.PHONY: all up down start stop status logs prune clean fclean
