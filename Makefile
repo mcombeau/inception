@@ -1,5 +1,5 @@
 # Edit login before launching !
-LOGIN = 	login
+LOGIN =		login
 DOMAIN =	${LOGIN}.42.fr
 DATA_PATH = /home/${LOGIN}/data
 ENV =		LOGIN=${LOGIN} DATA_PATH=${DATA_PATH} DOMAIN=${LOGIN}.42.fr 
@@ -37,6 +37,7 @@ clean:
 
 fclean: clean
 	${ENV} ./anonymize-login.sh
-	docker system prune -f
+	docker system prune -f -a --volumes
+	docker volume rm srcs_mariadb-data srcs_wordpress-data
 
 .PHONY: all up down start stop status logs prune clean fclean

@@ -1,4 +1,4 @@
-version: "3.5"
+version: "3.7"
 
 services:
     nginx:
@@ -48,12 +48,11 @@ volumes:
     driver: local
     driver_opts:
       type: 'none'
-      o:    'bind'
+      o: 'bind'
       device: ${DATA_PATH}/mariadb-data
   wordpress-data:
     driver: local
     driver_opts:
       type: 'none'
-      o:    'bind'
+      o: 'bind'
       device: ${DATA_PATH}/wordpress-data
-

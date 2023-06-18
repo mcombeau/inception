@@ -1,4 +1,4 @@
-FROM	alpine:3.18
+FROM	alpine:3.17
 
 # Install PHP 8.1 & MariaDB-client dependencies
 RUN		apk update && apk upgrade &&\
