@@ -11,6 +11,8 @@
 * Stop running container: `docker stop <container_id>`
 * Show exited container: `docker ps -a`
 * Remove exited container(s): `docker container prune`
+* Execute a command inside a running container: `docker exec <container> <command>`
+* Execute a command inside a running container in interactive mode: `docker exec -it <container_name> <command>`
 
 ### Dockerfile Basic Commands
 * `FROM`: Downloads an image to use as the container's base. Here we are using Alpine:3.18.
