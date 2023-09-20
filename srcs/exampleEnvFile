@@ -1,0 +1,23 @@
+#Example .env file -- Fill out example credentials for deployment
+NGINX_PORT=443
+NGINX_HOST=login.42.fr
+NGINX_ROOT=
+NGINX_ROOT_PWD=
+
+DB_PORT=3301
+DB_HOST=mariadb
+DB_ROOT_PASS=
+
+WP_PORT:9000
+WP_DB_NAME=wordpress_db
+WP_DB_USER=
+WP_DB_PASS=
+
+WP_PATH=/var/www/html/wordpress/
+WP_TITLE=Inception
+WP_ADMIN_USER=
+WP_ADMIN_PASS=
+WP_ADMIN_EMAIL=
+WP_USER=
+WP_USER_PASS=
+WP_USER_EMAIL=
