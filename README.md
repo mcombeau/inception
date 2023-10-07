@@ -1,30 +1,48 @@
 # Inception
 
+<p align="center">
+  <img src="https://github.com/mcombeau/mcombeau/blob/main/42_badges/inceptione.png" alt="inception 42 project badge"/>
+</p>
+
+A 42 project aimed at learning Docker and Docker-compose. This project asks us to create a small network of 3 Docker containers, one containing Nginx, one containing Wordpress and the third containing MariaDB. All three must work together over the Docker network to display a local website.
+
+## Status
+Finished 06/10/2023. Grade: 100%
+
+## Usage
+
+Launching this project requires a bit of setup:
+
+* Clone this repository and `cd` into it.
+* In the `srcs` folder, there is an `ExampleEnvFile` that must be filled out and saved into `srcs/.env`
+* The Makefile has a `login` variable that should be edited to reflect your 42 school login
+
+Once these steps are complete, you can use `make` to build and launch the docker containers.
+
+The website should be viewable at the adresses `https://localhost` or `http://login.42.fr` (replacing your login with the value in the Makefile variable).
+
 ## Project Notes
 
-### Docker Basic Commands for Testing Containers Individually
+### Viewing Docker Images, Containers, Volumes and Networks
 
-* Build image from Dockerfile: `docker build -f Dockerfile -t <name>:<tag> <path/to/Dockerfile/directory>`
-* Get image ID: `docker images`
-* Run in interactive mode: `docker run -it <image_id>`
-* Show running container with port and container ID: `docker ps`
-* Stop running container: `docker stop <container_id>`
-* Show exited container: `docker ps -a`
-* Remove exited container(s): `docker container prune`
-* Execute a command inside a running container: `docker exec <container> <command>`
-* Execute a command inside a running container in interactive mode: `docker exec -it <container_name> <command>`
+* Show Docker images: `docker images`
+* Show Docker containers: `docker ps` (add `-a` option to view stopped/exited containers)
+* Show Docker volumes: `docker volume ls` (`docker volume inspect <volume name>` to view more information about the volume)
+* Show Docker networks: `docker network ls`
+
+### Useful Commands for Debugging Docker Containers
+* Show logs: `docker-compose logs` (add `--follow <container name>` option to only see that container's logs)
+* Run a container in interactive mode: `docker run -it <image ID>`
+* Execute a command inside a running container: `docker exec <container name> <command>`
+* Execute a command inside a running container in interactive mode: `docker exec -it <container name> <command>`
+* Execute an interactive shell inside a running container: `docker exec -it <container name> sh` (This shows that Docker containers are not secure, since we can easily get a shell as root)
 
 ### Dockerfile Basic Commands
 * `FROM`: Downloads an image to use as the container's base. Here we are using Alpine:3.18.
 * `RUN`: Runs the specified command during the building process. Useful for installing binaries for later use.
 * `COPY`: Copy a file from host machine to the future docker container. Useful for loading custom configuration files.
+* `EXPOSE`: Expose a port so that it is accessible from outside the Docker network.
 * `ENTRYPOINT [ "command", "args"]`: The command to run at conainer startup.
-
-### Docker-compose Debugging
-* Remove service restart in `docker-compose.yml`
-* `make up`
-* Show container states: `docker-compose ps` (`cd` into `srcs` directory first)
-* Show logs: `docker-compose logs` (add `--follow <container_name>` option to only see that container's logs)
 
 ### Useful Resources
 
@@ -59,3 +77,6 @@ WordPress:
 * [Installing WordPress with curl and WP-CLI](https://make.wordpress.org/cli/handbook/guides/installing/)
 * [WP-CLI Commands](https://developer.wordpress.org/cli/commands/)
 * [WP-CLI Overview](https://jparks.work/index.php?title=Wp-cli)
+
+---
+Made by mcombeau: mcombeau@student.42.fr | LinkedIn: [mcombeau](https://www.linkedin.com/in/mia-combeau-86653420b/) | Website: [codequoi.com](https://www.codequoi.com)
